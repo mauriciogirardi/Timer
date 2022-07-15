@@ -14,7 +14,8 @@ export const GlobalStyles = createGlobalStyle`
 
     :focus {
         outline: 0;
-        box-shadow:  0 0 0 2px ${({ theme }) => theme['green-500']};
+        box-shadow:  0 0 0 1px ${({ theme }) => theme['green-500']};
+        border-radius: 5px;
     }
 
     body, input, textarea, button {
