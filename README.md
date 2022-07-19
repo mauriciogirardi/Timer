@@ -8,7 +8,16 @@ todo
 
 ### :rocket: Technologies used in the project
 
-todo
+- Zod
+- Vit
+- Eslint
+- ReactJS
+- Prettier
+- TypeScript
+- Phosphor React
+- React Hook Form
+- React Router Dom
+- Styled Components
 
 ### :arrow_heading_down: How to install the project and run
 
