@@ -29,7 +29,6 @@ const BaseInput = styled.input`
   font-size: 1.125rem;
   padding: 0 0.5rem;
   color: ${({ theme }) => theme['gray-100']};
-  border-radius: 0;
 
   &::placeholder {
     color: ${({ theme }) => theme['gray-500']};
@@ -38,11 +37,16 @@ const BaseInput = styled.input`
   &:focus {
     box-shadow: none;
     border-color: ${({ theme }) => theme['green-500']};
+    border-radius: 0;
   }
 `
 
 export const TaskInput = styled(BaseInput)`
   flex: 1;
+
+  &::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }
 `
 
 export const MinutesAmountInput = styled(BaseInput)`

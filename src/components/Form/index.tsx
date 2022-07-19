@@ -11,13 +11,24 @@ export const Form = () => {
           id="task"
           type="text"
           placeholder="Dê um nome para o seu projeto"
+          list="task-suggestions"
         />
+
+        <datalist id="task-suggestions">
+          <option value="Project 1" />
+          <option value="Project 2" />
+          <option value="Project 56" />
+          <option value="Project 58" />
+        </datalist>
 
         <label htmlFor="minutesAmount">durante</label>
         <S.MinutesAmountInput
           id="minutesAmount"
           type="number"
           placeholder="00"
+          step={5}
+          min={5}
+          max={60}
         />
 
         <span>minutos.</span>
