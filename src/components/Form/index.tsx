@@ -6,6 +6,7 @@ import * as zod from 'zod'
 import { CounterDown } from '../CounterDown'
 
 import * as S from './styles'
+import { useState } from 'react'
 
 const newCycleFromValidationSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa!'),
@@ -17,7 +18,17 @@ const newCycleFromValidationSchema = zod.object({
 
 type NewCycleFormData = zod.infer<typeof newCycleFromValidationSchema>
 
+interface Cycle {
+  id: string
+  task: string
+  minutesAmount: number
+}
+
 export const Form = () => {
+  const [cycles, setCycles] = useState<Cycle[]>([])
+  const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
+  const [amountSecondsPassed, setAmountSecondsPassed] = useState(0)
+
   const {
     register,
     handleSubmit,
@@ -32,9 +43,29 @@ export const Form = () => {
     },
   })
 
-  const handleCreateNewCycle = (data: NewCycleFormData) => {
+  const handleCreateNewCycle = ({ minutesAmount, task }: NewCycleFormData) => {
+    const id = String(new Date().getTime())
+    const newCycle: Cycle = {
+      id,
+      task,
+      minutesAmount,
+    }
+
+    setCycles((prevState) => [...prevState, newCycle])
+    setActiveCycleId(id)
     reset()
   }
+
+  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
+
+  const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
+  const currentSeconds = activeCycle ? totalSeconds - amountSecondsPassed : 0
+
+  const minutesAmount = Math.floor(currentSeconds / 60)
+  const secondsAmount = currentSeconds % 60
+
+  const minutes = String(minutesAmount).padStart(2, '0')
+  const seconds = String(secondsAmount).padStart(2, '0')
 
   const task = watch('task')
   const isSubmitDisabled = !task
@@ -72,7 +103,7 @@ export const Form = () => {
         <span>minutos.</span>
       </S.Wrapper>
 
-      <CounterDown />
+      <CounterDown minutes={minutes} secondes={seconds} />
 
       <S.StartCounterDownButton type="submit" disabled={isSubmitDisabled}>
         <Play size={24} />
