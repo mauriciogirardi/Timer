@@ -1,6 +1,9 @@
+import { useCycle } from '../../context/CycleContext'
 import * as S from './styles'
 
 export const History = () => {
+  const { cycles } = useCycle()
+
   return (
     <S.HistoryContainer>
       <h1>Meu histórico</h1>
