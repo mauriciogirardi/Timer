@@ -15,10 +15,15 @@ export const HistoryContainer = styled.main`
   padding: 1.5rem 3.5rem;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 
   h1 {
     font-size: 1.5rem;
     color: ${({ theme }) => theme['gray-100']};
+  }
+
+  @media (max-width: 600px) {
+    padding: 1.5rem 0rem;
   }
 `
 
