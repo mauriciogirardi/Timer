@@ -2,17 +2,22 @@
     <img src="public/timer.svg" width="150px">
 </div>
 
+[timer]()
+
 ### :hammer: About the application
 
-todo
+This is a Pomodoro application, a very important part of this method is the listing of the tasks that you must perform during the day and it is essential that this step is carried out correctly. It may seem like this is a simple task, but not everyone can do it so easily.
+
+When you have a routine pre-established by your school, course or work, this part of the organization of your day often comes more or less ready for you and doesn't require much effort.
 
 ### :rocket: Technologies used in the project
 
 - Zod
-- Vit
+- Vite
 - Eslint
-- ReactJS
+- Immer
 - Prettier
+- ReactJS
 - TypeScript
 - Phosphor React
 - React Hook Form
@@ -21,7 +26,16 @@ todo
 
 ### :arrow_heading_down: How to install the project and run
 
-todo
+```bash
+    # Clone the project
+    git clone https://github.com/mauriciogirardi/Timer.git
+
+    # Open project
+    cd timer
+
+    # Install dependency
+    npm i
+```
 
 ### :paintbrush: Layout
 
