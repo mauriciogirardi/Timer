@@ -2,7 +2,7 @@
     <img src="public/timer.svg" width="150px">
 </div>
 
-[timer]()
+[timer](https://vercel.com/mauriciogirardi/timer)
 
 ### :hammer: About the application
 
@@ -35,6 +35,9 @@ When you have a routine pre-established by your school, course or work, this par
 
     # Install dependency
     npm i
+
+    # Run project
+    npm run dev
 ```
 
 ### :paintbrush: Layout
