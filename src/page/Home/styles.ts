@@ -28,7 +28,7 @@ const BaseCounterDownButton = styled.button`
   gap: 0.5rem;
   font-weight: bold;
   cursor: pointer;
-  color: ${({ theme }) => theme['gray-100']};
+  color: ${({ theme }) => theme.white};
 
   transition: background-color 0.2s;
 

@@ -13,7 +13,8 @@ import {
   interruptCurrentCycleAction,
   markCurrentCycleAsFinishedAction,
 } from '../reducers/cycles/actions'
-import { cyclesReducer } from '../reducers/cycles/reducer'
+import { cyclesReducer, CyclesState } from '../reducers/cycles/reducer'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 interface ProviderCycleContextProps {
   children: ReactNode
@@ -49,6 +50,14 @@ const CycleContext = createContext({} as CycleContextType)
 export const CycleContextProvider = ({
   children,
 }: ProviderCycleContextProps) => {
+  const [enabledState, setEnabledState] = useLocalStorage<CyclesState>(
+    '@time:cycles-state-1.0.0',
+    {
+      cycles: [],
+      activeCycleId: null,
+    },
+  )
+
   const [cyclesState, dispatch] = useReducer(
     cyclesReducer,
     {
@@ -56,9 +65,8 @@ export const CycleContextProvider = ({
       activeCycleId: null,
     },
     () => {
-      const storedStateAsJSON = localStorage.getItem('@time:cycles-state-1.0.0')
-      if (storedStateAsJSON) {
-        return JSON.parse(storedStateAsJSON)
+      if (enabledState) {
+        return enabledState
       }
 
       return {
@@ -69,9 +77,8 @@ export const CycleContextProvider = ({
   )
 
   useEffect(() => {
-    const stateJSON = JSON.stringify(cyclesState)
-    localStorage.setItem('@time:cycles-state-1.0.0', stateJSON)
-  }, [cyclesState])
+    setEnabledState(cyclesState)
+  }, [cyclesState, setEnabledState])
 
   const { cycles, activeCycleId } = cyclesState
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)

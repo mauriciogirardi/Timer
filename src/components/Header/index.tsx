@@ -1,13 +1,21 @@
 import { NavLink } from 'react-router-dom'
 import { Timer, Scroll } from 'phosphor-react'
 
+import { useDarkMode } from '../../hooks/useDarkMode'
+import { Toggle } from '../Toggle'
+
 import logoSvg from '../../assets/logo.svg'
 import * as S from './styles'
 
 export const Header = () => {
+  const [darkMode, setDarkMode] = useDarkMode()
+
   return (
     <S.HeaderContainer>
-      <img src={logoSvg} alt="" />
+      <div>
+        <img src={logoSvg} alt="" />
+        <Toggle setDarkMode={setDarkMode} darkMode={darkMode} />
+      </div>
 
       <nav>
         <NavLink to="/" title="timer">
